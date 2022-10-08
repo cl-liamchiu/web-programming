@@ -8,17 +8,35 @@ const Task = (props) => {
   };
 
   const deleteTaskHandler = () => {
-    props.onDeleteTask(props.task.id)
-  }
+    props.onDeleteTask(props.task.id);
+  };
 
   return (
     <li className="todo-app__item">
       <div className="todo-app__checkbox">
-        <input type="checkbox" id={props.task.id} onChange={checkTaskHandler} checked={props.task.isComplete? true:false}/>
+        <input
+          type="checkbox"
+          id={props.task.id}
+          onChange={checkTaskHandler}
+          checked={props.task.isComplete ? true : false}
+        />
         <label htmlFor={props.task.id} />
       </div>
-      <h1 className={props.task.isComplete? "todo-app__item-detail-checked": "todo-app__item-detail"}>{props.task.title}</h1>
-      <img src={x_img} alt="x.png" className="todo-app__item-x" onClick={deleteTaskHandler}/>
+      <h1
+        className={
+          props.task.isComplete
+            ? "todo-app__item-detail-checked"
+            : "todo-app__item-detail"
+        }
+      >
+        {props.task.title}
+      </h1>
+      <img
+        src={x_img}
+        alt="x.png"
+        className="todo-app__item-x"
+        onClick={deleteTaskHandler}
+      />
     </li>
   );
 };

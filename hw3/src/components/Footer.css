@@ -40,11 +40,19 @@
     cursor: pointer;
   }
   
-  .todo-app__view-buttons button:focus {
+  #todo-all-selected,
+  #todo-active-selected,
+  #todo-completed-selected {
     outline-style: solid;
     outline-color: rgb(131, 129, 129);
     background-color: rgb(245, 245, 245);
   }
+
+  /* .todo-app__view-buttons button:focus {
+    outline-style: solid;
+    outline-color: rgb(131, 129, 129);
+    background-color: rgb(245, 245, 245);
+  } */
   
   .todo-app__clean {
     vertical-align: middle;
