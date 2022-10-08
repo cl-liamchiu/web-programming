@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+.body {
+  height: 100%;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: rgb(245, 245, 245);
+  overflow: hidden;
+}
+
+input[type='checkbox'] {
+  visibility: hidden;
+}
+
+.todo-app__root {
+  margin: 0 auto;
+  /* margin-top: 7em; */
+  width: 50em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1em;
+  color: #4d4d4d;
+  font-weight: 300;
+}
+
+.todo-app__header {
+  margin-bottom: 1em;
+}
+
+.todo-app__title {
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+  margin: 0;
+  padding: 0;
+}
+
+.todo-app__main {
+  width: 100%;
+}
+
+.todo-app__main {
+  background: rgb(254, 254, 254);
+}
+
+.todo-item-input {
+  font-size: 1.5em;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  width: 80%;
+  min-height: 3em;
+  transition: opacity 0.3s;
+  border: none;
+}
+
+.todo-item-input:focus {
+  outline: none;
+}
