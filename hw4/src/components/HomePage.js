@@ -51,7 +51,7 @@ const HomePage = ({
             <div
               className="error"
               style={
-                mineNum > boardSize ** 2
+                mineNum >= boardSize ** 2
                   ? { color: "#880000" }
                   : { color: "lightblue" }
               }
@@ -73,7 +73,7 @@ const HomePage = ({
                 <p
                   className="controlNum"
                   style={
-                    mineNum > boardSize ** 2
+                    mineNum >= boardSize ** 2
                       ? { color: "#880000", fontWeight: "bold" }
                       : {}
                   }
@@ -84,7 +84,7 @@ const HomePage = ({
                 <input
                   type="range"
                   step="1"
-                  min="0"
+                  min="2"
                   max="15"
                   defaultValue={boardSize}
                   onChange={(e) => boardSizeOnChange(e.target.value)}
@@ -92,7 +92,7 @@ const HomePage = ({
                 <p
                   className="controlNum"
                   style={
-                    mineNum > boardSize ** 2
+                    mineNum >= boardSize ** 2
                       ? { color: "#880000", fontWeight: "bold" }
                       : {}
                   }
