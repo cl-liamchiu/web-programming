@@ -2,6 +2,7 @@
 
 ## 基本要求與進階要求皆完成
 ## 請使用yarn 與 yarn start 檢查!
+## 若您開起檔案時，遇到bad option: --openssl-legacy-provider 的error，請您到package.json裡，將 "start": "react-scripts --openssl-legacy-provider start" 改成  "start": "react-scripts start"
 ## 謝謝您~~
 
 ![](https://i.imgur.com/pfsPBRR.png)
