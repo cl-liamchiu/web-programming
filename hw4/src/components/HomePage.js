@@ -30,7 +30,7 @@ const HomePage = ({
 
       {/* Basic TODO:  Implemen start button */}
 
-      {mineNum > boardSize ** 2 ? (
+      {mineNum >= boardSize ** 2 ? (
         <button className="btn">Start Game</button>
       ) : (
         <button className="btn" onClick={startGameOnClick}>
