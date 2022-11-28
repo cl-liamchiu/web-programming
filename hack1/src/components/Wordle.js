@@ -26,7 +26,7 @@ const Wordle = ({ solution }) => {
     printTest,
   } = useWordle(solution);
   const [result, setResult] = useState(
-    '"You lose!!!! The answer is "' + solution + "."
+    "You lose!!!! The answer is " + solution + "."
   );
   const [gameOver, setGameOver] = useState(false); // A bool whose default is false. It will be set to turn when the game is ended.
   const [win, setWin] = useState(false); // A bool whose default is false. It will be set to turn when the player wins the game.
@@ -59,7 +59,7 @@ const Wordle = ({ solution }) => {
         <div className="Wordle-lose">{result}</div>
       ): win? (
         <div className="Wordle-win">You win!!!!</div>
-      ): <div className="Hidden">You win!!!!</div> }
+      ): <div className="Wordle-lose Hidden">You win!!!!</div> }
 
       <Board turn={turn} guesses={guesses} curGuess={curGuess}></Board>
       <Keyboard usedChars={usedChars}></Keyboard>
@@ -70,9 +70,9 @@ const Wordle = ({ solution }) => {
       {/* TODO 1-1: call `Keyboard` and pass `usedChars` into it. */}
 
       {/* ↓ This button is only for testing! Please remember to comment it before you hand in your hack#1. ↓ */}
-      <button className="App-test-btn" onClick={printTest}>
+      {/* <button className="App-test-btn" onClick={printTest}>
         TEST
-      </button>
+      </button> */}
       {/* ↑ This button is only for testing! Please remember to comment it before you hand in your hack#1. ↑ */}
     </div>
   );
