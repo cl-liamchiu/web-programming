@@ -54,13 +54,14 @@ const Filter = ({
       const newFilter = filter.filter((originKey) => originKey !== key);
       filter = newFilter;
     }
+    console.log(filter)
     // TODO Part II-1: change filter state on clicking the pertaining checkboxes
     return filter;
   };
 
   const modifyPriceFilter = (key) => {
     console.log("key:", key.length)
-    priceFilter = modifyFilter(key.length, priceFilter);
+    priceFilter = modifyFilter(key, priceFilter);
     setPriceFilter(priceFilter);
     setDisplay(getTagString());
   };

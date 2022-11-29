@@ -20,7 +20,7 @@ const SearchPage = () => {
   const [restaurants, setRestaurant] = useState([]);
   const getRestaurant = async (priceFilter, mealFilter, typeFilter, sortBy) => {
     // TODO Part I-3-b: get information of restaurants from DB
-    console.log(priceFilter)
+    console.log("priceFilter: ", priceFilter)
     const {
       data: { message, contents },
     } = await instance.get("/getSearch", {
@@ -34,26 +34,44 @@ const SearchPage = () => {
 
     if (message === "success") {
       setRestaurant(contents);
-      console.log("recived")
-      console.log(contents)
-    }else{console.log("not recived")}
+      console.log("recived");
+    } else {
+      console.log("not recived");
+    }
   };
 
   useEffect(() => {
-    getRestaurant(state.priceFilter, state.mealFilter, state.typeFilter, state.sortBy);
+    getRestaurant(
+      state.priceFilter,
+      state.mealFilter,
+      state.typeFilter,
+      state.sortBy
+    );
   }, [state.priceFilter, state.mealFilter, state.typeFilter, state.sortBy]);
 
   const navigate = useNavigate();
   const ToRestaurant = (id) => {
     // TODO Part III-1: navigate the user to restaurant page with the corresponding id
   };
+  const priceToNum = (price) => {
+    let newPrice = []
+    price.forEach(price => {newPrice.push(price.length)      
+    });
+    return newPrice
+  }
   const getPrice = (price) => {
     let priceText = "";
     for (let i = 0; i < price; i++) priceText += "$";
     return priceText;
   };
+  const getTag = (tag) => {
+    const newTag = tag.map((element, i) =>
+      i !== tag.length - 1 ? element + ", " : element
+    );
+    return newTag;
+  };
 
-  return (restaurants? 
+  return restaurants ? (
     <div className="searchPageContainer">
       {restaurants.map((item) => (
         // TODO Part I-2: search page front-end
@@ -64,15 +82,16 @@ const SearchPage = () => {
           <div className="resInfo">
             <div className="title">
               <p className="name">{item.name}</p>
-              {item.price===1? (<p className="price">$</p>): item.price===2? (<p className="price">$$</p>):
-              (<p className="price">$$$</p>)}
-              <p className="distance">{item.distance/1000} km</p>
+              <p className="price">{getPrice(item.price)}</p>
+              <p className="distance">{item.distance / 1000} km</p>
             </div>
-            <p className="description">{item.tag+", "}</p>
+            <p className="description">{getTag(item.tag)}</p>
           </div>
         </div>
       ))}
-    </div> : <></>
+    </div>
+  ) : (
+    <></>
   );
 };
 export default SearchPage;

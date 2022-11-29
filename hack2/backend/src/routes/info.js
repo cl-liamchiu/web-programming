@@ -30,8 +30,68 @@ exports.GetSearch = async (req, res) => {
 
   console.log("typeFilter", typeFilter);
   console.log("sortBy: ", sortBy);
+  const priceToNum = (priceFilter) => {
+    let newPrice = []
+    priceFilter.forEach(price => {newPrice.push(price.length)      
+    });
+    return newPrice
+  }
   
-  if (priceFilter && tag) {
+  if (priceFilter) {
+    const numPrice = priceToNum(priceFilter)
+    if(mealFilter){
+      if(typeFilter){
+        const info = Info.find({
+          price: numPrice,
+          tag: { $all: typeFilter && mealFilter },
+        }).sort({ sortBy: 1 }).exec((err, data) => {
+            if (err) {
+              res.status(403).send({ message: "error", contents: data });
+              return handleError(err);
+            }
+            console.log("data:" , data)
+            res.status(200).send({ message: "success", contents: data });
+          });
+      }else{
+        const info = Info.find({
+        price: numPrice,
+        tag: { $all: mealFilter },
+      }).sort({ sortBy: 1 }).exec((err, data) => {
+          if (err) {
+            res.status(403).send({ message: "error", contents: data });
+            return handleError(err);
+          }
+          console.log("data:" , data)
+          res.status(200).send({ message: "success", contents: data });
+        });
+      }
+    }else if(typeFilter){
+      const info = Info.find({
+        price: numPrice,
+        tag: { $all: typeFilter},
+      }).sort({ sortBy: 1 }).exec((err, data) => {
+          if (err) {
+            res.status(403).send({ message: "error", contents: data });
+            return handleError(err);
+          }
+          console.log("data:" , data)
+          res.status(200).send({ message: "success", contents: data });
+        });
+      
+    }else{
+      const info = Info.find({
+        price: numPrice,
+      }).sort({ sortBy: 1 }).exec((err, data) => {
+          if (err) {
+            res.status(403).send({ message: "error", contents: data });
+            return handleError(err);
+          }
+          console.log("data:" , data)
+          res.status(200).send({ message: "success", contents: data });
+        });
+    }
+  }
+  else if (priceFilter && tag) {
     const info = Info.find({
       price: priceFilter,
       tag: { $all: tag },
@@ -44,19 +104,7 @@ exports.GetSearch = async (req, res) => {
         res.status(200).send({ message: "success", contents: data });
       });
   }
-  if (priceFilter) {
-    const info = Info.find({
-      price: priceFilter,
-    }).sort({ sortBy: 1 }).exec((err, data) => {
-        if (err) {
-          res.status(403).send({ message: "error", contents: data });
-          return handleError(err);
-        }
-        console.log("data:" , data)
-        res.status(200).send({ message: "success", contents: data });
-      });
-  }
-  if (mealFilter) {
+ else if (mealFilter) {
     const info = await Info.find({
       tag: { $all: mealFilter && typeFilter },
     }).sort({ sortBy: 1 }).exec((err, data) => {
@@ -68,7 +116,7 @@ exports.GetSearch = async (req, res) => {
         res.status(200).send({ message: "success", contents: data });
       });
   }
-  if (!mealFilter&&!priceFilter) {
+  else if (!mealFilter&&!priceFilter&&!typeFilter) {
     const info = await Info.find({
     }).sort({ sortBy: 1 }).exec((err, data) => {
         if (err) {
