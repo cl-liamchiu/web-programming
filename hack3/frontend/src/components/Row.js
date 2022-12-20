@@ -40,10 +40,10 @@ function Row({
   };
 
   const handleSubmitEdit = async(formData) => {
-    console.log(item)
+    // console.log(item)
     formData["id"] = item.id
     // formData["__typename"] = item.__typename
-    console.log("formData ", formData);
+    // console.log("formData ", formData);
     await updateItem({
       variables: {
         // TODO 4 Use `updateItem` and pass the correct variables
@@ -55,7 +55,7 @@ function Row({
         },
       },
     });
-    console.log("h");
+    // console.log("h");
   };
 
   return (
